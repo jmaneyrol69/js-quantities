@@ -4,7 +4,7 @@
 
 | Name   | Prefix                  | Factor   |
 | ------ | ----------------------- | -------- |
-| googol | googol                  | $10^100$ |
+| googol | googol                  | ==$10^100$== |
 | kibi   | Ki, Kibi, kibi          | $2^10$   |
 | mebi   | Mi, Mebi, mebi          | $2^20$   |
 | gibi   | Gi, Gibi, gibi          | $2^30$   |
