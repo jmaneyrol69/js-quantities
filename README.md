@@ -2,14 +2,11 @@
 
 [![Build Status](https://travis-ci.org/gentooboontoo/js-quantities.png)](https://travis-ci.org/gentooboontoo/js-quantities)
 
-JS-quantities is originally a JavaScript port of Kevin Olbrich's library Ruby
-Units (http://github.com/olbrich/ruby-units).
+JS-quantities is originally a JavaScript port of Kevin Olbrich's library Ruby Units (<http://github.com/olbrich/ruby-units>).
 
-The library aims to simplify the handling of units for scientific calculations
-involving quantities.
+The library aims to simplify the handling of units for scientific calculations involving quantities.
 
-JS-quantities is defined as an UMD module and can be used with AMD, Node
-and within browsers.
+JS-quantities is defined as an UMD module and can be used with AMD, Node and within browsers.
 
 ## Installing JS-quantities
 
@@ -18,7 +15,9 @@ and within browsers.
 Download [latest release v1.7.4](https://raw.github.com/gentooboontoo/js-quantities/v1.7.4/build/quantities.js)
 or install it with Bower:
 
-    bower install js-quantities
+```bash
+bower install js-quantities
+```
 
 Then include it:
 
@@ -36,9 +35,9 @@ define(['quantities'], function(Qty) {
 
 ### Node
 
-```
-$ npm install js-quantities
-$ node
+```bash
+npm install js-quantities
+node
 > var Qty = require('js-quantities');
 ```
 
@@ -46,27 +45,22 @@ $ node
 
 ### Creation
 
-Instances of quantities are made by means of `Qty()` method. `Qty` can both be
-used as a constructor (with new) or as a factory (without new):
+Instances of quantities are made by means of `Qty()` method. `Qty` can both be used as a constructor (with new) or as a factory (without new):
 
 ```javascript
 qty = new Qty('23 ft'); // constructor
 qty = Qty('23 ft'); // factory
 ```
 
-`Qty` constructor accepts strings, numbers and `Qty` instances as
-initializing values.
-
-If scalars and their respective units are available programmatically, the
-two argument signature may be useful:
+`Qty` constructor accepts strings, numbers and `Qty` instances as initializing values.  
+If scalars and their respective units are available programmatically, the two argument signature may be useful:
 
 ```javascript
 qty = new Qty(124, 'cm'); // => 1.24 meter
 qty = Qty(124, 'cm'); // => 1.24 meter
 ```
 
-For the sake of simplicity, one will use the factory way below but using
-`new Qty()` is equivalent.
+For the sake of simplicity, one will use the factory way below but using `new Qty()` is equivalent.
 
 ```javascript
 qty = Qty('1m'); // => 1 meter
@@ -92,9 +86,8 @@ qtyCopy = Qty(qty); // quantity could be copied when used as
                     // initializing value
 ```
 
-`Qty.parse` utility method is also provided to parse and create
-quantities from strings. Unlike the constructor, it will return `null`
-instead of throwing an error when parsing an invalid quantity.
+`Qty.parse` utility method is also provided to parse and create quantities from strings.  
+Unlike the constructor, it will return `null` instead of throwing an error when parsing an invalid quantity.
 
 ```javascript
 Qty.parse('1 m'); // => 1 meter
@@ -155,9 +148,7 @@ Qty('10ohm').inverse() // '.1/ohm'
 Qty('10ohm').to('S') // '.1S'
 ```
 
-`Qty.swiftConverter()` is a fast way to efficiently convert large array of
-Number values. It configures a function accepting a value or an array of Number
-values to convert.
+`Qty.swiftConverter()` is a fast way to efficiently convert large array of Number values. It configures a function accepting a value or an array of Number values to convert.
 
 ```javascript
 var convert = Qty.swiftConverter('m/h', 'ft/s'); // Configures converter
@@ -169,8 +160,7 @@ var converted = convert(2500); // => 2.278..
 var convertedSerie = convert([2500, 5000, ...]); // => [2.278.., 4.556.., ...]
 ```
 
-The main drawback of this conversion method is that it does not take care of
-rounding issues.
+The main drawback of this conversion method is that it does not take care of rounding issues.
 
 ### Comparison
 
@@ -225,16 +215,14 @@ qty.toPrec('0.1 bar'); // => 1.15 MPa
 
 ### Formatting quantities
 
-`Qty#toString` returns a string using the canonical form of the quantity (that
-is it could be seamlessly reparsed by `Qty`).
+`Qty#toString` returns a string using the canonical form of the quantity (that is it could be seamlessly reparsed by `Qty`).
 
 ```javascript
 var qty = Qty('1.146 MPa');
 qty.toString(); // => '1.146 MPa'
 ```
 
-As a shorthand, units could be passed to `Qty#toString` and is equivalent to
-successively call `Qty#to` then `Qty#toString`.
+As a shorthand, units could be passed to `Qty#toString` and is equivalent to successively call `Qty#to` then `Qty#toString`.
 
 ```javascript
 var qty = Qty('1.146 MPa');
@@ -242,9 +230,7 @@ qty.toString('bar'); // => '11.46 bar'
 qty.to('bar').toString(); // => '11.46 bar'
 ```
 
-`Qty#toString` could also be used with any method from `Qty` to make some sort
-of formatting. For instance, one could use `Qty#toPrec` to fix the maximum
-number of decimals:
+`Qty#toString` could also be used with any method from `Qty` to make some sort of formatting. For instance, one could use `Qty#toPrec` to fix the maximum number of decimals:
 
 ```javascript
 var qty = Qty('1.146 MPa');
@@ -252,16 +238,11 @@ qty.toPrec(0.1).toString(); // => '1.1 MPa'
 qty.to('bar').toPrec(0.1).toString(); // => '11.5 bar'
 ```
 
-For advanced formatting needs as localization, specific rounding or any other
-custom customization, quantities can be transformed into strings through
-`Qty#format` according to optional target units and formatter. If target units
-are specified, the quantity is converted into them before formatting.
+For advanced formatting needs as localization, specific rounding or any other custom customization, quantities can be transformed into strings through `Qty#format` according to optional target units and formatter. If target units are specified, the quantity is converted into them before formatting.
 
-Such a string is not intended to be reparsed to construct a new instance of
-`Qty` (unlike output of `Qty#toString`).
+Such a string is not intended to be reparsed to construct a new instance of `Qty` (unlike output of `Qty#toString`).
 
-If no formatter is specified, quantities are formatted according to default
-js-quantities' formatter and is equivalent to `Qty#toString`.
+If no formatter is specified, quantities are formatted according to default js-quantities' formatter and is equivalent to `Qty#toString`.
 
 ```javascript
 var qty = Qty('1.1234 m');
@@ -269,9 +250,7 @@ qty.format(); // same units, default formatter => '1.234 m'
 qty.format('cm'); // converted to 'cm', default formatter => '123.45 cm'
 ```
 
-`Qty#format` could delegates formatting to a custom formatter if required. A
-formatter is a callback function accepting scalar and units as parameters and
-returning a formatted string representing the quantity.
+`Qty#format` could delegates formatting to a custom formatter if required. A formatter is a callback function accepting scalar and units as parameters and returning a formatted string representing the quantity.
 
 ```javascript
 var configurableRoundingFormatter = function(maxDecimals) {
@@ -302,21 +281,16 @@ qty.format(); // same units, current default formatter => '1.12 m'
 
 ### Temperatures
 
-Like ruby-units, JS-quantities makes a distinction between a temperature (which
-technically is a property) and degrees of temperature (which temperatures are
-measured in).
+Like ruby-units, JS-quantities makes a distinction between a temperature (which technically is a property) and degrees of temperature (which temperatures are measured in).
 
-Temperature units (i.e., 'tempK') can be converted back and forth, and will take
-into account the differences in the zero points of the various scales.
+Temperature units (i.e., 'tempK') can be converted back and forth, and will take into account the differences in the zero points of the various scales.  
 Differential temperature (e.g., '100 degC') units behave like most other units.
 
 ```javascript
 Qty('37 tempC').to('tempF') // => 98.6 tempF
 ```
 
-JS-quantities will throw an error if you attempt to create a temperature unit
-that would fall below absolute zero.
-
+JS-quantities will throw an error if you attempt to create a temperature unit that would fall below absolute zero.  
 Unit math on temperatures is fairly limited.
 
 ```javascript
@@ -345,7 +319,7 @@ This conversion references the 0 point on the scale of the temperature unit
 Qty('100 degC').to('tempC') // => -173.15 tempC
 ```
 
-These conversions are always interpreted as being relative to absolute zero.
+These conversions are always interpreted as being relative to absolute zero.  
 Conversions are probably better done like this...
 
 ```javascript
@@ -372,35 +346,36 @@ catch(e) {
 
 ## Tests
 
-Tests are implemented with Jasmine (https://github.com/pivotal/jasmine).
-You could use both HTML and jasmine-node runners.
+Tests are implemented with Jasmine (<https://github.com/pivotal/jasmine>). You could use both HTML and jasmine-node runners.
 
-To execute specs through HTML runner, just open `SpecRunner.html` file in a
-browser to execute them.
+To execute specs through HTML runner, just open `SpecRunner.html` file in a browser to execute them.
 
 To execute specs through `jasmine-node`, launch:
 
-    make test
+```bash
+make test
+```
 
 ### Performance regression test
 
-There is a small benchmarking HTML page to spot performance regression between
-currently checked-out quantities.js and any committed version.
+There is a small benchmarking HTML page to spot performance regression between currently checked-out quantities.js and any committed version.  
 Just execute:
 
-    make bench
+```bash
+make bench
+```
 
-then open http://0.0.0.0:3000/bench
+then open <http://0.0.0.0:3000/bench>
 
-Checked-out version is benchmarked against HEAD by default but it could be changed by passing
-any commit SHA on the command line. Port (default 3000) is also configurable.
+Checked-out version is benchmarked against HEAD by default but it could be changed by passing any commit SHA on the command line. Port (default 3000) is also configurable.
 
-    make bench COMMIT=e0c7fc468 PORT=5000
+```bash
+make bench COMMIT=e0c7fc468 PORT=5000
+```
 
 ## TypeScript type declarations
 
-A TypeScript declaration file is published on
-[DefinitelyTyped](https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/types/js-quantities).
+A TypeScript declaration file is published on [DefinitelyTyped](https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/types/js-quantities).
 
 It could be installed with `npm install @types/js-quantities`.
 
@@ -408,5 +383,4 @@ It could be installed with `npm install @types/js-quantities`.
 
 Feedback and contributions are welcomed.
 
-Pull requests must pass tests and linting. Please make sure that `make test`
-and `make lint` return no errors before submitting.
+Pull requests must pass tests and linting. Please make sure that `make test` and `make lint` return no errors before submitting.
