@@ -4,7 +4,7 @@
 
 JS-quantities is originally a JavaScript port of Kevin Olbrich's library Ruby Units (<http://github.com/olbrich/ruby-units>).
 
-The library aims to simplify the handling of units for scientific calculations involving quantities.
+This library aims to simplify the handling of units for scientific calculations involving quantities.
 
 JS-quantities is defined as an UMD module and can be used with AMD, Node and within browsers.
 
@@ -12,8 +12,7 @@ JS-quantities is defined as an UMD module and can be used with AMD, Node and wit
 
 ### Browser
 
-Download [latest release v1.7.4](https://raw.github.com/gentooboontoo/js-quantities/v1.7.4/build/quantities.js)
-or install it with Bower:
+Download [latest release v1.7.4](https://raw.github.com/gentooboontoo/js-quantities/v1.7.4/build/quantities.js) or install it with Bower:
 
 ```bash
 bower install js-quantities
@@ -82,7 +81,7 @@ qty = Qty(1.5); // number as initializing value
 
 qty = Qty('1 attoparsec/microfortnight');
 
-qtyCopy = Qty(qty); // quantity could be copied when used as
+qtyCopy = Qty(qty); // quantity can be copied when used as
                     // initializing value
 ```
 
@@ -180,7 +179,7 @@ qty1.compareTo(qty2); // => -1 if qty1 < qty2,
 ### Operators
 
 * add(other): Add. other can be string or quantity. other should be unit compatible.
-* sub(other): Substract. other can be string or quantity. other should be unit compatible.
+* sub(other): Subtract. other can be string or quantity. other should be unit compatible.
 * mul(other): Multiply. other can be string, number or quantity.
 * div(other): Divide. other can be string, number or quantity.
 
@@ -215,14 +214,14 @@ qty.toPrec('0.1 bar'); // => 1.15 MPa
 
 ### Formatting quantities
 
-`Qty#toString` returns a string using the canonical form of the quantity (that is it could be seamlessly reparsed by `Qty`).
+`Qty#toString` returns a string using the canonical form of the quantity (so that it can be seamlessly re-parsed by `Qty`).
 
 ```javascript
 var qty = Qty('1.146 MPa');
 qty.toString(); // => '1.146 MPa'
 ```
 
-As a shorthand, units could be passed to `Qty#toString` and is equivalent to successively call `Qty#to` then `Qty#toString`.
+As a shorthand, units can be passed to `Qty#toString` and is equivalent to successively call `Qty#to` then `Qty#toString`.
 
 ```javascript
 var qty = Qty('1.146 MPa');
@@ -230,7 +229,7 @@ qty.toString('bar'); // => '11.46 bar'
 qty.to('bar').toString(); // => '11.46 bar'
 ```
 
-`Qty#toString` could also be used with any method from `Qty` to make some sort of formatting. For instance, one could use `Qty#toPrec` to fix the maximum number of decimals:
+`Qty#toString` can also be used with any method from `Qty` to make some sort of formatting. For instance, one can use `Qty#toPrec` to fix the maximum number of decimals:
 
 ```javascript
 var qty = Qty('1.146 MPa');
@@ -238,11 +237,11 @@ qty.toPrec(0.1).toString(); // => '1.1 MPa'
 qty.to('bar').toPrec(0.1).toString(); // => '11.5 bar'
 ```
 
-For advanced formatting needs as localization, specific rounding or any other custom customization, quantities can be transformed into strings through `Qty#format` according to optional target units and formatter. If target units are specified, the quantity is converted into them before formatting.
+For advanced formatting needs like localization, specific rounding or any other customizations, quantities can be transformed into strings through `Qty#format` according to optional target units and formatter. If target units are specified, the quantity is converted into them before formatting.
 
-Such a string is not intended to be reparsed to construct a new instance of `Qty` (unlike output of `Qty#toString`).
+Such a string is not intended to be re-parsed to construct a new instance of `Qty` (unlike output of `Qty#toString`).
 
-If no formatter is specified, quantities are formatted according to default js-quantities' formatter and is equivalent to `Qty#toString`.
+If no formatter is specified, quantities are formatted according to default js-quantities formatter and is equivalent to `Qty#toString`.
 
 ```javascript
 var qty = Qty('1.1234 m');
@@ -250,7 +249,7 @@ qty.format(); // same units, default formatter => '1.234 m'
 qty.format('cm'); // converted to 'cm', default formatter => '123.45 cm'
 ```
 
-`Qty#format` could delegates formatting to a custom formatter if required. A formatter is a callback function accepting scalar and units as parameters and returning a formatted string representing the quantity.
+`Qty#format` delegates formatting to a custom formatter if required. A formatter is a callback function accepting scalar and units as parameters, and returning a formatted string representing the quantity.
 
 ```javascript
 var configurableRoundingFormatter = function(maxDecimals) {
@@ -346,7 +345,7 @@ catch(e) {
 
 ## Tests
 
-Tests are implemented with Jasmine (<https://github.com/pivotal/jasmine>). You could use both HTML and jasmine-node runners.
+Tests are implemented with Jasmine (<https://github.com/pivotal/jasmine>). You can use both HTML and jasmine-node runners.
 
 To execute specs through HTML runner, just open `SpecRunner.html` file in a browser to execute them.
 
@@ -367,7 +366,7 @@ make bench
 
 then open <http://0.0.0.0:3000/bench>
 
-Checked-out version is benchmarked against HEAD by default but it could be changed by passing any commit SHA on the command line. Port (default 3000) is also configurable.
+Checked-out version is benchmarked against HEAD by default but it can be changed by passing any commit SHA on the command line. Port (default 3000) is also configurable.
 
 ```bash
 make bench COMMIT=e0c7fc468 PORT=5000
@@ -377,7 +376,7 @@ make bench COMMIT=e0c7fc468 PORT=5000
 
 A TypeScript declaration file is published on [DefinitelyTyped](https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/types/js-quantities).
 
-It could be installed with `npm install @types/js-quantities`.
+It can be installed with `npm install @types/js-quantities`.
 
 ## Contribute
 
